@@ -1,0 +1,26 @@
+
+    .blue-fon {
+        background-color: cadetblue;
+
+    }
+
+    #clickCreat {
+        position: relative;
+        left: 300px;
+    }
+    #clickSave {
+        position: relative;
+        left: 250px;
+        top:50px;
+    }
+    #clearButton {
+        position: relative;
+        left: 200px;
+        top:100px;
+    }
+
+    .apple-sort {
+        padding-left: 0px;
+        padding-top: 10px;
+        position: relative;
+    }
