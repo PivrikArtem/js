@@ -1,0 +1,31 @@
+.main-class{
+    width:400px;
+    height:200px;
+    margin: 0 auto;
+    margin-top:20px;
+    text-align:center;
+    padding: 10px;
+    background-color: rgb(127, 161, 255);
+    border: 1px solid black;
+}.main-class .operations-block .input-block{
+    display:inline-block;
+    padding: 2px;
+}
+.main-class .operations-block .input-block label{
+    display:block;
+}
+.main-class .operations-block .input-block input{
+  width:100px;
+}
+.main-class .operations-block .input-block select{
+    width:100px;
+}
+
+.main-class .count-block{
+padding: 100px;
+}
+.main-class .count-block button{
+    width:200px;
+    padding: 10px;
+    margin: 0 auto;
+}
