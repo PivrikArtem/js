@@ -1,0 +1,18 @@
+div{
+    padding:20px;
+}
+hr{
+    margin:20px;
+}
+.crossing{
+    text-decoration: line-through;
+    }
+img{
+width: 50px;
+position: absolute;
+margin-top:-15px;
+display:none;
+}
+li{
+    padding: 10px;
+}
