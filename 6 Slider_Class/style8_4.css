@@ -1,0 +1,23 @@
+.wrapper{
+    margin: 0 auto;
+    width: 700px;
+       
+}
+.wrapper .imgs .flat{
+    width: 500px;
+    height: 250px;
+    display: none;
+}
+.wrapper .imgs {
+    padding-top: 100px;
+    display:inline-block;
+}
+.wrapper .buttons{
+    width: 70px;
+    height: 70px;
+    font-size: 3em;
+    display: inline-block;
+}
+.wrapper .imgs .show{
+    display: block; 
+}
