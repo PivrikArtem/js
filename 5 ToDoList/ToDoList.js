@@ -38,9 +38,9 @@ class ToDoList {
     }
 
     _onClickAdd() {
-        this.loading();
         this.InputTaskName = document.querySelector('#' + 'inputValueTask' + this.elementId);
         if (this.InputTaskName.value != '') {
+            this.loading();
             this.newService.postTask(this.InputTaskName.value, this._onPostSucces.bind(this));
         }
     }
