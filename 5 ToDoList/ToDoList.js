@@ -2,7 +2,8 @@ class ToDoList {
     constructor(whatToDo, elementId) {
         this.whatToDo = whatToDo;
         this.elementId = elementId;
-        this.InputTaskName;
+        this.inputTaskName;
+        this.renderElement;
         this._tasks = [];
         this.pictureOnload = null;
         this.newService = new ToDoListService;
@@ -10,15 +11,24 @@ class ToDoList {
     }
 
     render() {  // render all ToDoList
-        var renderElement = document.querySelector('#' + this.elementId);
-        renderElement.innerHTML = `<input type="text" placeholder='What to buy?' id='inputValueTask${this.elementId}'>
+        this.renderElement = document.querySelector('#' + this.elementId);
+
+        this.renderElement.innerHTML = `<input type="text" placeholder='What to buy?' id='inputValueTask${this.elementId}'>
 <button id='addButtonId${this.elementId}'> add </button><img id=img${this.elementId} src="imgs/1.gif"><hr/><div data-role="tasks"></div>`
 
-        renderElement.querySelector('#' + 'addButtonId' + this.elementId).onclick = this._onClickAdd.bind(this);
-        this.pictureOnload = renderElement.querySelector('#' + 'img' + this.elementId);
-        this.newService.getAllTasks(this._onGetSuccess.bind(this));
+this._EnterTask();
 
     }
+_EnterTask(){
+    let ButtonAdd = this.renderElement.querySelector('#' + 'addButtonId' + this.elementId);
+    this.inputTaskName = document.querySelector('#' + 'inputValueTask' + this.elementId);
+
+    this.inputTaskName.addEventListener('keyup', (e) => { if (e.keyCode === 13) ButtonAdd.click() })
+    ButtonAdd.onclick = this._onClickAdd.bind(this);
+    this.pictureOnload = this.renderElement.querySelector('#' + 'img' + this.elementId);
+    this.newService.getAllTasks(this._onGetSuccess.bind(this));
+}
+
     loading() {
         this.pictureOnload.style.display = 'inline-block';
     }
@@ -38,10 +48,10 @@ class ToDoList {
     }
 
     _onClickAdd() {
-        this.InputTaskName = document.querySelector('#' + 'inputValueTask' + this.elementId);
-        if (this.InputTaskName.value != '') {
+
+        if (this.inputTaskName.value != '') {
             this.loading();
-            this.newService.postTask(this.InputTaskName.value, this._onPostSucces.bind(this));
+            this.newService.postTask(this.inputTaskName.value, this._onPostSucces.bind(this));
         }
     }
 
@@ -76,7 +86,7 @@ class ToDoList {
     _onPostSucces(serverTask) {
         var newServerTask = serverTask.task;
         var newTask = new Task(newServerTask.title, newServerTask.isDone, newServerTask.id);
-        this.InputTaskName.value = '';
+        this.inputTaskName.value = '';
         this._tasks.push(newTask);
         this.noLoading();
         this._renderTasks();
