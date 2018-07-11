@@ -1,4 +1,4 @@
-var map = new Map([
+var coordinates = [
     {
         city: 'Nashville, TN',
         lat: 36.17,
@@ -34,5 +34,7 @@ var map = new Map([
         city: 'Memphis, TN',
         lat: 35.15,
         long: -90.05
-    },
-]);
+    }
+];
+
+module.exports.coordinatesMap = coordinates;
