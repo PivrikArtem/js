@@ -1,0 +1,11 @@
+table tr td {
+    width: 70px;
+    height: 70px;
+    border: 1px solid red;
+}
+
+img {
+    width: 70px;
+    height: 70px;
+}
+
