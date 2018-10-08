@@ -1,11 +1,35 @@
+.wrapper {
+    max-width: 530px;
+}
+span{
+font-size: 30px;
+color: white;
+font-family: Arial, Helvetica, sans-serif;
+
+}
+
 table tr td {
     width: 70px;
     height: 70px;
-    border: 1px solid red;
+    
+    border: 1px solid darkslategray;
+}
+
+table tr #id32 {
+    border-right: 5px solid brown;
 }
 
 img {
     width: 70px;
     height: 70px;
 }
+ #start_id{
+     display:flex;
+     justify-content: center;
+     align-items: center;
+background-color:darkslategray;
+width: 530px;
+height:70px;
+margin-bottom:5px;
 
+ }

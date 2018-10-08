@@ -1,9 +1,10 @@
 class Room {
     constructor(controlPerson) {
         this.controlPerson = controlPerson;
+        this.divWrapperEl = document.querySelector('.wrapper');
         this.currentId = this._currentIdEl().currentIdEl;
         this.tableEl = document.createElement('table');
-        this.divWrapperEl = document.querySelector('.wrapper');
+        this.startEl = document.createElement('div');
         this.imgEl = document.createElement('img');
         this.imgEl.src = 'top_and_down.jpg'
         this.tr = null;
@@ -21,9 +22,12 @@ class Room {
         }
         this.startCell = this.tableEl.querySelector("#" + this.currentId)
         this.startCell.appendChild(this.imgEl);
+        this.startEl.innerHTML = `<span>Please, press enter</span>`;
+        this.startEl.id = 'start_id';
     }
 
     createRoom() {
+        this.divWrapperEl.appendChild(this.startEl);
         this.divWrapperEl.appendChild(this.tableEl);
         this.viewControlPerson();
     }
@@ -57,17 +61,18 @@ class Room {
     }
 
     _onMovingPerson(e) {
-        debugger;
+
         const currentIdEl = this._currentIdEl().currentIdEl;
         const colInx = this._currentIdEl().currentColumnIndex;
         const cellInx = this._currentIdEl().currentCellIndex;
-        if (colInx < 6 && colInx > 0 && cellInx < 6 && cellInx > 0) {
+        if (colInx < this.n - 1 && colInx > 0 && cellInx < this.m - 1 && cellInx > 0) {
             const currentCell = this.divWrapperEl.querySelector("#" + currentIdEl);
             const currentImg = currentCell.querySelector('img');
             currentImg.remove();
         }
         if (e.keyCode === 39) {
             this.controlPerson.nextPerson(this._addPerson.bind(this));
+
         }
         if (e.keyCode === 37) {
             this.controlPerson.prevPerson(this._addPerson.bind(this));
@@ -78,17 +83,42 @@ class Room {
         if (e.keyCode === 40) {
             this.controlPerson.downPerson(this._addPerson.bind(this));
         }
+        if (e.keyCode === 13) {
+           
+            setInterval(() => {
+                if (this._currentIdEl().currentColumnIndex == 0 && this._currentIdEl().currentCellIndex >= 0) {
+
+                    this.controlPerson.prevPerson(this._addPerson.bind(this));
+                }
+                if (this._currentIdEl().currentCellIndex == 0 && this._currentIdEl().currentColumnIndex < this.m - 1
+
+                ) {
+                    this.controlPerson.downPerson(this._addPerson.bind(this));
+                }
+                if (this._currentIdEl().currentColumnIndex == this.m - 1) {
+                    this.controlPerson.nextPerson(this._addPerson.bind(this));
+                }
+                if (this._currentIdEl().currentColumnIndex < this.m - 1 && this._currentIdEl().currentColumnIndex > 0
+                    && this._currentIdEl().currentCellIndex < this.n && this._currentIdEl().currentCellIndex > 0
+                ) {
+                    this.controlPerson.topPerson(this._addPerson.bind(this));
+                }
+
+            }, 1000)
+
+
+        }
     }
 
     viewControlPerson() {
-        document.addEventListener('keyup', this._onMovingPerson.bind(this));
+        document.addEventListener('keydown', this._onMovingPerson.bind(this));
     }
 }
 
 class СontrolPerson {
     constructor() {
-        this.currentCellIndex = 0;
-        this.currentColumnIndex = 0;
+        this.currentCellIndex = 6;
+        this.currentColumnIndex = 5;
         this.id = null;
     }
 
