@@ -34,3 +34,6 @@
   width: 60px;
   border-radius: 5px;
 }
+.calculator .buttons .btn-row .button:focus {
+  outline: none;
+}
