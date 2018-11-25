@@ -1,25 +1,30 @@
-var ArryNumber = document.querySelectorAll('.button');
-var ArryOperation = document.querySelectorAll('.operation');
-var ElementC = document.getElementById('IdC');
-var ElementResult = document.getElementById('IdResult');
-var inputValue = document.getElementById('inputId');
-var finalInut;
-var valueOperation;
-var memoryInput1;
-var memoryInput2;
-var needClearResult = false;
+class Calculator {
+    constructor() {
+        this.arryNumbers = document.querySelectorAll('.button');
+        this.arryOperations = document.querySelectorAll('.operation');
+        this.elementC = document.getElementById('IdC');
+        this.elementResult = document.getElementById('IdResult');
+        this.inputValue = document.getElementById('inputId');
+        this.needClearResult = false;
+        this.valueOperation = null;
+        this.memoryInput1 = null;
+        this.memoryInput2 = null;
 
-for (let i = 0; i < ArryNumber.length; i++) {
-    ArryNumber[i].addEventListener('click', onArryNumberClick);
+        for (let i = 0; i < arryNumbers.length; i++) {
+            arryNumbers[i].addEventListener('click', onArryNumbersClick);
+        }
+        for (let j = 0; j < arryOperations.length; j++) {
+            arryOperations[j].addEventListener('click', onArryOperationsClick);
+        }
+    }
+
+
+
 }
 
-for (var j = 0; j < ArryOperation.length; j++) {
-    ArryOperation[j].addEventListener('click', onArryOperationClick);
-}
+elementResult.addEventListener('click', onElementResultClick);
 
-ElementResult.addEventListener('click', onElementResultClick);
-
-function onArryNumberClick(e) {
+function onArryNumbersClick(e) {
     if (inputValue.value === '0') {
         inputValue.value = '';
     }
@@ -38,7 +43,7 @@ function onArryNumberClick(e) {
     needClearResult = false;
 }
 
-function onArryOperationClick(e) {
+function onArryOperationsClick(e) {
     needClearResult = true;
     valueOperation = e.currentTarget.dataset.operation;
 }
